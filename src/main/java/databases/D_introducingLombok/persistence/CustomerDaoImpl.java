@@ -24,9 +24,11 @@ public class CustomerDaoImpl implements CustomerDao {
         Connector connector = new MySqlConnector("database.properties");
         CustomerDao customerDao = new CustomerDaoImpl(connector);
         List<Customer> customers = customerDao.getAllCustomers();
+        connector.freeConnection();
         System.out.println(customers);
         System.out.println("------------------------------");
         System.out.println("Customer with id 119: " + customerDao.getById(119));
+        connector.freeConnection();
     }
 
     @Override
@@ -57,9 +59,6 @@ public class CustomerDaoImpl implements CustomerDao {
         } catch (SQLException e) {
             System.out.println("SQL Exception occurred when attempting to prepare SQL for execution");
             System.out.println("Error: " + e.getMessage());
-        } finally {
-            // Close the connection
-            connector.freeConnection(conn);
         }
         return customer;
     }
@@ -88,9 +87,6 @@ public class CustomerDaoImpl implements CustomerDao {
         } catch (SQLException e) {
             System.out.println("SQL Exception occurred when attempting to prepare SQL for execution");
             System.out.println("Error: " + e.getMessage());
-        } finally {
-            // Close the connection
-            connector.freeConnection(conn);
         }
 
         return customers;
@@ -112,9 +108,6 @@ public class CustomerDaoImpl implements CustomerDao {
         } catch (SQLException e) {
             System.out.println("SQL Exception occurred when attempting to prepare/execute SQL.");
             System.out.println("Error: " + e.getMessage());
-        } finally {
-            // Close the connection
-            connector.freeConnection(conn);
         }
 
         return rowsAffected > 0;

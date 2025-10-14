@@ -48,13 +48,11 @@ public class MySqlConnector implements Connector {
         String username = properties.getProperty("username", "root");
         String password = properties.getProperty("password", "");
 
-        Connection connection = null;
-
         try {
             // Load the database driver
             Class.forName(driver);
             // TRY to get a connection to the database
-            connection = DriverManager.getConnection(url+database, username, password);
+            conn = DriverManager.getConnection(url+database, username, password);
         } catch (ClassNotFoundException e) {
             System.out.println("ClassNotFoundException occurred when trying to load driver: " + e.getMessage());
             System.exit(1);
@@ -63,13 +61,14 @@ public class MySqlConnector implements Connector {
             System.out.println(e.getMessage());
             System.exit(2);
         }
-        return connection;
+        return conn;
     }
 
-    public void freeConnection(Connection conn){
+    public void freeConnection(){
         if(conn != null){
             try{
                 conn.close();
+                conn = null;
             }catch (SQLException e){
                 System.out.println("An exception occurred when attempting to close the " +
                         "connection to the database");
