@@ -53,8 +53,7 @@ public class CustomerDaoImpl implements CustomerDao {
                     customer = mapRow(rs);
                 }
             } catch (SQLException e) {
-                System.out.println("SQL Exception occurred when executing SQL or processing results.");
-                System.out.println("Error: " + e.getMessage());
+                log.error("SQL Exception occurred  in Customer getById() when executing SQL or processing results. \nError: {}", e.getMessage());
             }
         } catch (SQLException e) {
             System.out.println("SQL Exception occurred when attempting to prepare SQL for execution");
@@ -80,13 +79,10 @@ public class CustomerDaoImpl implements CustomerDao {
                     customers.add(c);
                 }
             } catch (SQLException e) {
-                System.out.println("SQL Exception occurred when executing SQL or processing results.");
-                //System.out.println("Error: " + e.getMessage());
-                log.error("Error: " + e.getMessage());
+                log.error("SQL Exception occurred  in Customer getAllCustomers() when executing SQL or processing results. \nError: {}", e.getMessage());
             }
         } catch (SQLException e) {
-            System.out.println("SQL Exception occurred when attempting to prepare SQL for execution");
-            System.out.println("Error: " + e.getMessage());
+            log.error("SQL Exception occurred  in Customer getAllCustomers() when attempting to prepare SQL for execution. \nError: {}", e.getMessage());
         }
 
         return customers;
@@ -106,8 +102,7 @@ public class CustomerDaoImpl implements CustomerDao {
             // your only result will be a number indicating how many rows were affected
             rowsAffected = ps.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("SQL Exception occurred when attempting to prepare/execute SQL.");
-            System.out.println("Error: " + e.getMessage());
+            log.error("SQL Exception occurred  in Customer deleteById() when executing SQL or processing results. \nError: {}", e.getMessage());
         }
 
         return rowsAffected > 0;
