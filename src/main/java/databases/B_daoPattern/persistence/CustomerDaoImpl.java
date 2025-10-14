@@ -48,21 +48,17 @@ public class CustomerDaoImpl implements CustomerDao {
                     } catch (SQLException e) {
                         System.out.println("SQL Exception occurred when executing SQL or processing results.");
                         System.out.println("Error: " + e.getMessage());
-                        e.printStackTrace();
                     }
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred when attempting to prepare SQL for execution");
                     System.out.println("Error: " + e.getMessage());
-                    e.printStackTrace();
                 }
             } catch (SQLException e) {
                 System.out.println("SQL Exception occurred when attempting to connect to database.");
                 System.out.println(e.getMessage());
-                e.printStackTrace();
             }
         } catch (ClassNotFoundException e) {
             System.out.println("ClassNotFoundException occurred when trying to load driver: " + e.getMessage());
-            e.printStackTrace();
         }
 
         return customer;
@@ -112,21 +108,17 @@ public class CustomerDaoImpl implements CustomerDao {
                     } catch (SQLException e) {
                         System.out.println("SQL Exception occurred when executing SQL or processing results.");
                         System.out.println("Error: " + e.getMessage());
-                        e.printStackTrace();
                     }
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred when attempting to prepare SQL for execution");
                     System.out.println("Error: " + e.getMessage());
-                    e.printStackTrace();
                 }
             } catch (SQLException e) {
                 System.out.println("SQL Exception occurred when attempting to connect to database.");
                 System.out.println(e.getMessage());
-                e.printStackTrace();
             }
         } catch (ClassNotFoundException e) {
             System.out.println("ClassNotFoundException occurred when trying to load driver: " + e.getMessage());
-            e.printStackTrace();
         }
         return customers;
     }
@@ -157,22 +149,15 @@ public class CustomerDaoImpl implements CustomerDao {
                 } catch (SQLException e) {
                     System.out.println("SQL Exception occurred when attempting to prepare/execute SQL.");
                     System.out.println("Error: " + e.getMessage());
-                    e.printStackTrace();
                 }
             } catch (SQLException e) {
                 System.out.println("SQL Exception occurred when attempting to connect to database.");
                 System.out.println(e.getMessage());
-                e.printStackTrace();
             }
         } catch (ClassNotFoundException e) {
             System.out.println("ClassNotFoundException occurred when trying to load driver: " + e.getMessage());
-            e.printStackTrace();
         }
 
-        if (rowsAffected > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return rowsAffected > 0;
     }
 }
