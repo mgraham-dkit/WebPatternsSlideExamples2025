@@ -18,10 +18,6 @@ public class MySqlConnector implements Connector{
         this.conn = conn;
     }
 
-    public void setConnection(Connection conn){
-        this.conn = conn;
-    }
-
     public MySqlConnector(String propertiesFilename) {
         properties = new Properties();
         try {
