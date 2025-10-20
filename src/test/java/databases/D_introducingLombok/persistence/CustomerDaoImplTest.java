@@ -83,6 +83,19 @@ class CustomerDaoImplTest {
     }
 
     @Test
-    void deleteById() {
+    void deleteById_ValidId() {
+        // Create dao to test
+        CustomerDao custDao = new CustomerDaoImpl(connectionSource);
+
+        // Set test input - use a customer not connected to an order
+        int custId = 124;
+
+        // Run the method under test
+        boolean result = custDao.deleteById(custId);
+        // First phase: Confirm the result is as expected
+        assertTrue(result);
+        // Second phase: Confirm database was amended by confirming the value is no longer present
+        Customer deleted = custDao.getById(custId);
+        assertNull(deleted);
     }
 }
