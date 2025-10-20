@@ -98,4 +98,32 @@ class CustomerDaoImplTest {
         Customer deleted = custDao.getById(custId);
         assertNull(deleted);
     }
+
+    @Test
+    void deleteById_NonExistentId() {
+        // Create dao to test
+        CustomerDao custDao = new CustomerDaoImpl(connectionSource);
+
+        // Set test input - use a customer not connected to an order
+        int custId = -20;
+
+        // Run the method under test
+        boolean result = custDao.deleteById(custId);
+        // Confirm the result is as expected
+        assertFalse(result);
+    }
+
+    @Test
+    void deleteById_DeletingCustomerWithExistingOrders() {
+        // Create dao to test
+        CustomerDao custDao = new CustomerDaoImpl(connectionSource);
+
+        // Set test input - use a customer connected to an order to confirm you cannot delete customers with orders
+        int custId = 103;
+
+        // Run the method under test
+        boolean result = custDao.deleteById(custId);
+        // Confirm the result is as expected
+        assertFalse(result);
+    }
 }
