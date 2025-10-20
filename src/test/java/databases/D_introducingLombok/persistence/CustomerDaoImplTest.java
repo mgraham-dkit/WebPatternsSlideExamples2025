@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerDaoImplTest {
     // Establish which database properties to use - link to the test database, not live!
@@ -75,10 +74,10 @@ class CustomerDaoImplTest {
         CustomerDao custDao = new CustomerDaoImpl(connectionSource);
 
         // Set test input
-        int custId = 103;
+        int custId = 11;
 
         // Run the method under test
-        Customer result = custDao.getById(11);
+        Customer result = custDao.getById(custId);
         // Confirm the result is as expected
         assertNull(result);
     }
