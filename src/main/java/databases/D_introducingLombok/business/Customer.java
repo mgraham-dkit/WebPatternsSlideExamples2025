@@ -2,6 +2,8 @@ package databases.D_introducingLombok.business;
 
 import lombok.*;
 
+import java.util.Objects;
+
 /**
  *
  * @author michelle
@@ -60,6 +62,22 @@ public class Customer implements Comparable<Customer> {
         formattedText = formattedText + "\n\tCredit limit: " + creditLimit;
 
         return formattedText;
+    }
+
+    public static boolean deepEquals(Customer c1, Customer c2){
+        return Objects.equals(c1.customerNumber, c2.customerNumber)
+                && Objects.equals(c1.customerName, c2.customerName)
+                && Objects.equals(c1.contactFirstName, c2.contactFirstName)
+                && Objects.equals(c1.contactLastName, c2.contactLastName)
+                && Objects.equals(c1.phone, c2.phone)
+                && Objects.equals(c1.addressLine1, c2.addressLine1)
+                && Objects.equals(c1.addressLine2, c2.addressLine2)
+                && Objects.equals(c1.city, c2.city)
+                && Objects.equals(c1.state, c2.state)
+                && Objects.equals(c1.postalCode, c2.postalCode)
+                && Objects.equals(c1.country, c2.country)
+                && Objects.equals(c1.salesRepEmployeeNumber, c2.salesRepEmployeeNumber)
+                && Objects.equals(c1.creditLimit, c2.creditLimit);
     }
 
     @Override
