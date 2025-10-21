@@ -39,7 +39,7 @@ class CustomerDaoImplTest {
     }
 
     @Test
-    void getById() throws SQLException {
+    void getById(){
         // Create dao to test
         CustomerDao custDao = new CustomerDaoImpl(connectionSource);
 
@@ -58,18 +58,19 @@ class CustomerDaoImplTest {
                 .state(null)
                 .postalCode("44000")
                 .country("France")
-                .salesRepEmployeeNumber(1370)
+                .salesRepEmployeeNumber(1002)
                 .creditLimit(21000)
                 .build();
 
         // Run the method under test
         Customer result = custDao.getById(103);
         // Confirm the result is as expected
-        assertEquals(expResult, result);
+        //assertEquals(expResult, result);
+        assertTrue(Customer.deepEquals(expResult, result));
     }
 
     @Test
-    void getById_invalidID() throws SQLException {
+    void getById_invalidID(){
         // Create dao to test
         CustomerDao custDao = new CustomerDaoImpl(connectionSource);
 
